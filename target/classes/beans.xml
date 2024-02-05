@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="dept1" class="training.trg.beans.Department">
+		<constructor-arg type="String" index="1" value="Sales"></constructor-arg>
+		<constructor-arg type="int" index='0' value="11"></constructor-arg>
+	</bean>
+
+	<bean id="dept2" class="training.trg.beans.Department">
+		<property name="deptId" value="22"></property>
+		<property name="name" value="Technical"></property>
+	</bean>
+
+	<bean id="emp1" class="training.trg.beans.Employee" init-method="beanCreate" destroy-method="beanDestroy">
+		<property name="empId" value="123544"></property>
+		<property name="name" value="Alex"></property>
+		<property name="dept" ref="dept1"></property>
+		<property name="salary" value="25000"></property>
+		<property name="technologies">
+			<list>
+				<value>JS</value>
+				<value>Java</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="emp2" class="training.trg.beans.Employee" scope="prototype" init-method="beanCreate" destroy-method="beanDestroy">
+		<property name="empId" value="127344"></property>
+		<property name="name" value="Luke"></property>
+		<property name="dept" ref="dept2"></property>
+		<property name="salary" value="5000"></property>
+	</bean>
+	
+	<bean id="emp3" class="training.trg.beans.Employee" autowire="byType"
+	 init-method="beanCreate" destroy-method="beanDestroy" lazy-init="true">
+		<property name="empId" value="78858688"></property>
+		<property name="name" value="Hayley"></property>
+		<property name="dept" ref="dept1"></property>
+		<property name="salary" value="25000"></property>
+		<property name="technologies">
+			<list>
+				<value>JS</value>
+				<value>Java</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
